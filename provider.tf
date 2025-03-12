@@ -9,6 +9,7 @@ terraform {
     backend "gcs" {
       bucket = "harness-iacm-bucket"
       prefix = "terraform/state"
+      region = var.REGION
     }
     
   }
