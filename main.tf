@@ -1,5 +1,5 @@
 resource "google_compute_instance" "harness-vm" {
-  name         = "harness-iacm"
+  name         = "harness-vm"
   machine_type = var.machine_type
   zone         = var.zone
   boot_disk {
