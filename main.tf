@@ -21,7 +21,6 @@ module "GCE" {
   disk_size     = var.disk_size
   network       = module
   subnetwork    = module.VPC.network_self_link
-  subnet_id     = module.VPC.subnet_self_link
   labels        = var.instance_labels
 }
 
