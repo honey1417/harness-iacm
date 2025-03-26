@@ -1,7 +1,7 @@
 # Instance Template
 
 resource "google_compute_instance_template" "module_template" {
-  name         = var.instance_template_name
+  name         = "${var.instance_template_name}-${random_id.template_suffix.hex}"
   machine_type = var.machine_type
   region       = var.region
 
@@ -26,7 +26,7 @@ resource "google_compute_instance_template" "module_template" {
     sudo systemctl status httpd
     echo "<h1>Hello World from $(hostname -f)</h1>" | sudo tee /var/www/html/index.html
     EOT
-    
+
     lifecycle {
     create_before_destroy = true
   }
