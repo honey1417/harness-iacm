@@ -19,8 +19,8 @@ module "GCE" {
   zone          = var.zone
   image         = var.image
   disk_size     = var.disk_size
-  network       = module.VPC.network_self_link
-  subnetwork    = module.VPC.subnet_self_link
+  network       = module.VPC.vpc_id
+  subnetwork    = module.VPC.subnet_id
   labels        = var.instance_labels
 }
 
