@@ -86,6 +86,9 @@ resource "google_compute_backend_service" "backend_service" {
   backend {
     group = google_compute_instance_group_manager.module_mig.instance_group
   }
+  depends_on = [
+    google_compute_health_check.http_health_check
+  ]
 }
 
 
