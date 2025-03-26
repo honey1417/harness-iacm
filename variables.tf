@@ -28,7 +28,7 @@ variable "disk_size" {
   type        = number
 }
 
-variable "network_name" {
+variable "vpc_name" {
   description = "Name of the custom VPC network"
   type        = string
 }
