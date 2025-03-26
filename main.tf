@@ -1,17 +1,14 @@
-resource "google_compute_instance" "harness-vm" {
-  name         = "harness-vm"
-  machine_type = var.machine_type
-  zone         = var.zone
-  boot_disk {
-    initialize_params {
-      image = var.image
-    }
-  }
+provider "google" {
+  project = var.project_id
+  region  = var.region
+}
 
-  network_interface {
-    network = "default"
-    access_config {
-      # This gives the VM an external IP
-    }
-  }
+module "GCE" {
+  source        = "./modules/GCE"
+  instance_name = "harness-iacm-instance"
+  machine_type  = "e2-medium"
+  zone          = var.zone
+  image         = "debian-cloud/debian-12"
+  disk_size     = 15
+  network       = "default"
 }

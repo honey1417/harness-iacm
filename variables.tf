@@ -1,25 +1,15 @@
-variable "PROJECT_ID" {
-    description = "Project ID"
-    type = string
-    default = "harshini-project-452710"
+variable "project_id" {
+  description = "The GCP project ID."
+  type        = string
 }
-variable "REGION" {
-    description = "Region for resources"
-    type = string
-    default = "us-centra1"
+
+variable "region" {
+  description = "The region to deploy resources."
+  type        = string
 }
+
 variable "zone" {
-    description = "Zone of the VM"
-    type = string
-    default = "us-central1-a"
+  description = "The zone to deploy resources."
+  type        = string
 }
-variable "machine_type" {
-    description = "Machine type of the VM"
-    type = string
-    default = "e2-medium"
-}
-variable "image" {
-    description = "Image of the VM"
-    type = string
-    default = "centos-cloud/centos-stream-9-v20250123"
-}
+
