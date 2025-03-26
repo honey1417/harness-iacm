@@ -47,18 +47,3 @@ variable "instance_labels" {
   description = "List of tags for the instance"
   type        = map(string)
 }
-
-variable "health_check_name" {
-  description = "Name of the health check."
-  type        = string
-}
-
-variable "mig_name" {
-  description = "Name of the managed instance group."
-  type        = string
-}
-
-variable "instance_base_name" {
-  description = "Base name for instances in the MIG."
-  type        = string
-}
