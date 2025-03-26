@@ -16,7 +16,7 @@ resource "google_compute_instance_template" "module_template" {
     subnetwork    = var.subnetwork
     access_config {}  
   }
-  tags = ["http-server"]
+  tags = [var.firewall_target_tag]
   metadata_startup_script = <<-EOT
     #!/bin/bash
     sudo yum update -y 
