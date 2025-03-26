@@ -26,6 +26,10 @@ resource "google_compute_instance_template" "module_template" {
     sudo systemctl status httpd
     echo "<h1>Hello World from $(hostname -f)</h1>" | sudo tee /var/www/html/index.html
     EOT
+    
+    lifecycle {
+    create_before_destroy = true
+  }
 }
 
 
