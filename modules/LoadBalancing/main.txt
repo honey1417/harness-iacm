@@ -1,5 +1,5 @@
 # Instance Template
-
+-------------------------------
 resource "google_compute_instance_template" "module_template" {
   name         = var.instance_template_name
   machine_type = var.machine_type
@@ -29,9 +29,9 @@ resource "google_compute_instance_template" "module_template" {
 }
 
 
-
+---------------------------
 # Health Check for the LB
-
+----------------------------
 resource "google_compute_health_check" "http_health_check" {
   name                = var.health_check_name
   check_interval_sec  = var.health_check_interval
@@ -46,9 +46,9 @@ resource "google_compute_health_check" "http_health_check" {
 }
 
 
-
+------------------------------
 # Managed Instance Group (MIG) using the instance template.
-
+-------------------------------
 resource "google_compute_instance_group_manager" "module_mig" {
   name               = var.mig_name
   base_instance_name = var.instance_base_name
@@ -71,9 +71,9 @@ resource "google_compute_instance_group_manager" "module_mig" {
 }
 
 
-
+-------------------------------------
 # Backend Service for Load Balancing
-
+---------------------------------------
 resource "google_compute_backend_service" "backend_service" {
   name                  = var.backend_service_name
   load_balancing_scheme = "EXTERNAL"
@@ -85,27 +85,27 @@ resource "google_compute_backend_service" "backend_service" {
 }
 
 
-
+---------------------------------
 # URL Map for the Load Balancer
-
+---------------------------------
 resource "google_compute_url_map" "url_map" {
   name            = var.url_map_name
   default_service = google_compute_backend_service.backend_service.self_link
 }
 
 
-
+----------------------------------
 # HTTP Proxy for the Load Balancer
-
+----------------------------------
 resource "google_compute_target_http_proxy" "http_proxy" {
   name    = var.http_proxy_name
   url_map = google_compute_url_map.url_map.self_link
 }
 
 
-
+-------------------------------------------
 # Global Forwarding Rule for HTTP Traffic
-
+-------------------------------------------
 resource "google_compute_global_forwarding_rule" "http_forwarding_rule" {
   name       = var.forwarding_rule_name
   target     = google_compute_target_http_proxy.http_proxy.self_link
@@ -113,9 +113,9 @@ resource "google_compute_global_forwarding_rule" "http_forwarding_rule" {
 }
 
 
-
+----------------------------------------
 # Firewall Rule to Allow HTTP Traffic
-
+-----------------------------------------
 resource "google_compute_firewall" "http_firewall" {
   name    = var.firewall_rule_name
   network = var.network
