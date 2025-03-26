@@ -1,7 +1,7 @@
 # Instance Template
 
 resource "google_compute_instance_template" "module_template" {
-  name         = "${var.instance_template_name}-${random_id.template_suffix.hex}"
+  name         = var.instance_template_name
   machine_type = var.machine_type
   region       = var.region
 
