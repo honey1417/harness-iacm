@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket  = var.bucket_name
+    bucket  = "harshini-project-452710-harness-iacm-bucket"
     prefix  = "terraform/statefiles/gce.state"
   }
 }
