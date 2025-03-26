@@ -31,3 +31,14 @@ variable "network" {
   default     = ""
 }
 
+variable "subnetwork" {
+   description = "The subnetwork to attach the instance to."
+  type        = string
+  default     = ""
+}
+
+variable "labels" {
+  description = "List of tags to apply to the instance"
+  type        = map(string)
+  default     = {}
+}

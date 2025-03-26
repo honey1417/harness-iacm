@@ -12,6 +12,8 @@ resource "google_compute_instance" "harshini-vm" {
 
   network_interface {
     network    = var.network
+    subnetwork = var.subnetwork
     access_config {} # This allocates a one-to-one NAT IP to the instance.
   }
+  labels = var.labels
 }
