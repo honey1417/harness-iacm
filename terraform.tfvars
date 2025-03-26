@@ -1,6 +1,6 @@
 project_id = "harshini-project-452710"
-region = "us-east2"
-zone = "us-east2-b"
+region = "us-east1"
+zone = "us-east1-b"
 machine_type = "e2-medium"
 image = "debian-cloud/debian-12"
 disk_size = 10
