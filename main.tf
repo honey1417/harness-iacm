@@ -18,7 +18,7 @@ module "LoadBalancing" {
   region = var.region
   zone   = var.zone
 
-  instance_template_name = "centos-instance-template"
+  instance_template_name = "harness-gcp-instance-template"
   machine_type           = var.machine_type
   source_image           = var.image
   
