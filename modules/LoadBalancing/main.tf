@@ -19,11 +19,10 @@ resource "google_compute_instance_template" "module_template" {
   tags = [var.firewall_target_tag]
   metadata_startup_script = <<-EOT
     #!/bin/bash
-    sudo dnf update -y 
+    sudo dnf makecache
     sudo dnf install -y httpd
     sudo systemctl enable httpd
     sudo systemctl start httpd
-    sudo systemctl status httpd
     echo "<h1>Hello World from $(hostname -f)</h1>" | sudo tee /var/www/html/index.html
     EOT
     
