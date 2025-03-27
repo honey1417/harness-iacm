@@ -36,7 +36,7 @@ module "LoadBalancing" {
   
   mig_name                = var.mig_name
   instance_base_name      = var.instance_base_name
-  mig_target_size         = 2
+  mig_target_size         = 1
   named_port              = 80
   auto_healing_delay      = 300
   
