@@ -32,7 +32,7 @@ module "LoadBalancing" {
   healthy_threshold       = 1
   unhealthy_threshold     = 3
   health_check_port       = 80
-  health_check_path       = "/index.html"
+  health_check_path       = "/"
   
   mig_name                = var.mig_name
   instance_base_name      = var.instance_base_name

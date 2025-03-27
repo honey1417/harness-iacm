@@ -18,18 +18,28 @@ resource "google_compute_instance_template" "module_template" {
   }
   tags = [var.firewall_target_tag]
   metadata_startup_script = <<-EOT
-    #!/bin/bash
-    sudo dnf makecache
-    sudo dnf install -y httpd
-    sudo systemctl enable httpd
-    sudo systemctl start httpd
-    echo "<h1>Hello World from $(hostname -f)</h1>" | sudo tee /var/www/html/index.html
-    EOT
-    
-    lifecycle {
-    create_before_destroy = true
+   #!/bin/bash
+   sudo dnf update -y
+   sudo dnf install -y httpd firewalld  # Ensure firewalld is installed
+   sudo systemctl enable httpd
+   sudo systemctl start httpd
+   echo "<h1>Hello World from $(hostname -f)</h1>" | sudo tee /var/www/html/index.html
+
+   # Ensure firewalld is running before adding rules
+   sudo systemctl enable firewalld
+   sudo systemctl start firewalld
+   sudo firewall-cmd --add-service=http --permanent
+   sudo firewall-cmd --reload
+
+   # Keep the script from blocking instance initialization
+   nohup bash -c 'sudo systemctl restart httpd' > /dev/null 2>&1 &
+EOT
+
+  lifecycle {
+  create_before_destroy = true
   }
 }
+
 
 
 
