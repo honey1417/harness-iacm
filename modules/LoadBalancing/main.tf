@@ -81,7 +81,7 @@ resource "google_compute_instance_group_manager" "module_mig" {
 resource "google_compute_backend_service" "backend_service" {
   name                  = var.backend_service_name
   load_balancing_scheme = "EXTERNAL"
-  health_checks         = [google_compute_health_check.http_health_check.self_link]
+  health_checks         = [google_compute_health_check.http_health_check.id]
 
   backend {
     group = google_compute_instance_group_manager.module_mig.instance_group
